@@ -69,9 +69,9 @@ public class Polynomial
      * @return String
      */
     public String toString() {
+        
         String polyStr= "";
         char sign;
-
 
         for ( int i = 0; i < coefficient.length; i++) {
 
@@ -122,6 +122,7 @@ public class Polynomial
      * @return value of polynomial when x
      */
     public double eval(double x) {
+        
         double polySum = 0;
         for ( int i = 0; i < coefficient.length; i++) {
             polySum = coefficient[i] + (Math.pow(x, i));
@@ -137,6 +138,7 @@ public class Polynomial
      * @return value of polynomial when x
      */
     public double eval2(double x) {
+        
         double polySum = 0;
         for ( int i = coefficient.length - 1; i >= 0; i--) {
             polySum = (x * polySum) + coefficient[i];
@@ -152,74 +154,78 @@ public class Polynomial
      * @return sum of polynomials 
      */
     public Polynomial sum(Polynomial p2) {
+        
         Polynomial polySum;
         double[] polyAdd;
         
-                polyAdd = new double[ (Math.max(p2.getDegree(), this.getDegree() )) + 1 ];  
+        polyAdd = new double[ (Math.max(p2.getDegree(), this.getDegree() )) + 1 ];  
 
-                for ( int i = 0; i < coefficient.length; i++) {
+        for ( int i = 0; i < coefficient.length; i++) {
 
-                    polyAdd[i] = polyAdd[i] + coefficient[i];
-                }
+            polyAdd[i] = polyAdd[i] + coefficient[i];
+        }
 
-                for ( int i = 0; i < p2.getDegree() + 1; i++) {
+        for ( int i = 0; i < p2.getDegree() + 1; i++) {
 
-                    polyAdd[i] = polyAdd[i] + p2.getCoefficient(i) ;
-                }
+            polyAdd[i] = polyAdd[i] + p2.getCoefficient(i) ;
+        }
 
-                polySum = new Polynomial(polyAdd);
-                
+        polySum = new Polynomial(polyAdd);
+        
         return polySum;
+        
     } 
 
 
-  /** 
+    /** 
      * Multiplies the polynomial on which method is called and the passed polynomial
      * @param p2 - Polynomial which is passed 
      * @return sum of polynomials 
      */
     public Polynomial mul(Polynomial p2) {
+        
         Polynomial polySum;
         double[] polyAdd;
         
-                polyAdd = new double[ (p2.getDegree() + this.getDegree() ) + 1 ];  
+        polyAdd = new double[ (p2.getDegree() + this.getDegree() ) + 1 ];  
 
-                for (int i = 0; i < coefficient.length; i++) {
-                    for (int j = 0; j < p2.getDegree() + 1; j++) {
-                        polyAdd[i+j] += (coefficient[i] * p2.getCoefficient(j));
-                    }
-                }
+        for (int i = 0; i < coefficient.length; i++) {
+            for (int j = 0; j < p2.getDegree() + 1; j++) {
+                polyAdd[i+j] += (coefficient[i] * p2.getCoefficient(j));
+            }
+        }
 
-                polySum = new Polynomial(polyAdd);
-                return polySum;
+        polySum = new Polynomial(polyAdd);
+        return polySum;
+        
     }
 
 
     /** 
      * Multiplies the polynomial on which method is called and the passed polynomial
      * @param p2 - Polynomial which is passed 
-     * @return subtracted polynomail
+     * @return subtracted polynomial
      */
     public Polynomial sub(Polynomial p2) {
-        Polynomial polySum;
-        double[] polyAdd;
         
-                polyAdd = new double[ (Math.max(p2.getDegree(), this.getDegree() )) + 1 ];  
+       Polynomial polySum;
+       double[] polyAdd;
+        
+       polyAdd = new double[ (Math.max(p2.getDegree(), this.getDegree() )) + 1 ];  
 
-                for ( int i = 0; i < coefficient.length; i++) {
+       for ( int i = 0; i < coefficient.length; i++) {
 
-                    polyAdd[i] = polyAdd[i] + coefficient[i];
-                }
+           polyAdd[i] = polyAdd[i] + coefficient[i];
+       }
 
-                for ( int i = 0; i < p2.getDegree() + 1; i++) {
+       for ( int i = 0; i < p2.getDegree() + 1; i++) {
 
-                    polyAdd[i] = polyAdd[i] - p2.getCoefficient(i) ;
-                }
+           polyAdd[i] = polyAdd[i] - p2.getCoefficient(i) ;
+       }
 
-                polySum = new Polynomial(polyAdd);
+       polySum = new Polynomial(polyAdd);
                 
-        return polySum;
-        
+       return polySum;
                 
     }
 
@@ -229,12 +235,16 @@ public class Polynomial
      * @return composed polynomial
      */
     public Polynomial compose(Polynomial p2) {
+        
         Polynomial polyCompose = new Polynomial();
+        
         for (int i = this.getDegree(); i >= 0; i--) {
             Polynomial polyTerm = new Polynomial(coefficient[i], 0);
             polyCompose = polyTerm.sum(p2.mul(polyCompose));
         }
+        
         return polyCompose;
+    
     }
 
 
