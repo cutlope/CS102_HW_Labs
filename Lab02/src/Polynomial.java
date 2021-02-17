@@ -1,3 +1,4 @@
+
 /**
  * Polynomial Class
  * @author Abdullah Riaz
@@ -30,8 +31,8 @@ public class Polynomial
      * @param d - integer value which is the degree of the polynomial
      */
     public Polynomial(double c, int d) {    
-        coefficient = new double[1];
-        coefficient[0] = c;
+        coefficient = new double[ d +1 ];
+        coefficient[d] = c;
         power = d;
     }
 
@@ -41,7 +42,7 @@ public class Polynomial
      */
     public Polynomial(double[] coff) {
         coefficient = coff;
-        power = coff.length;
+        power = coff.length -1;
     }
 
 
@@ -61,7 +62,7 @@ public class Polynomial
      * @return degree of polynomial
      */
     public int getDegree() {
-        return power - 1;           // Reduced by 1 since arrays start from 0
+        return power ;           // Reduced by 1 since arrays start from 0
     }
 
     /** 
@@ -94,8 +95,12 @@ public class Polynomial
                 polyStr  = polyStr + " " + sign + " " + 'x' + '^' + i ;
             }
 
+            else if (coefficient[i] == 0) {
+                continue;
+            }
+
             else {
-                polyStr  = polyStr + " " + sign + " " +  coefficient[i] + 'x' + '^' + i ;       
+                polyStr  = polyStr + " " + sign + " " +  Math.abs(coefficient[i])  + 'x' + '^' + i ;       
                 }
 
             }
@@ -153,7 +158,7 @@ public class Polynomial
      * @param p2 - Polynomial which is passed 
      * @return sum of polynomials 
      */
-    public Polynomial sum(Polynomial p2) {
+    public Polynomial add(Polynomial p2) {
         
         Polynomial polySum;
         double[] polyAdd;
@@ -240,12 +245,34 @@ public class Polynomial
         
         for (int i = this.getDegree(); i >= 0; i--) {
             Polynomial polyTerm = new Polynomial(coefficient[i], 0);
-            polyCompose = polyTerm.sum(p2.mul(polyCompose));
+            polyCompose = polyTerm.add(p2.mul(polyCompose));
         }
         
         return polyCompose;
     
+    } 
+
+     /** 
+     * Divides the polynomial on which method is called and the passed polynomial
+     * @param p2 - Polynomial which is passed 
+     * @return  quotient
+     */
+    public Polynomial div(Polynomial p2) {
+        Polynomial a = this;                        //Creates a local clone 
+        Polynomial quotient = new Polynomial();         //Creates an empty polynomial to store our quotient terms
+        
+        if ( p2.getDegree() > this.getDegree()) {       //dividing a polynomail with another higher degree polynomial always returns 0
+            quotient = new Polynomial();
+            return quotient;
+        }
+
+        for(int i =  ((a.getDegree()-p2.getDegree()) + 1 ) ; i > 0 ; i --) {
+            Polynomial leadingTerm = new Polynomial(( a.getCoefficient(i) / p2.getCoefficient(p2.getDegree() ) ), i - p2.getDegree());  //Creates polynomial containing the lead term
+            a = a.sub(leadingTerm.mul(p2));                     //P(x) – Q(x) * T(x) is basically happening here
+            quotient = leadingTerm.add(quotient);               //Add the quotient to our polynomail which we return at end
+             
+        }
+
+        return quotient;
     }
-
-
 }
