@@ -1,3 +1,6 @@
+/**
+ * Square Shape class which extends Shape2D to inherit the common methods
+*/
 public class Square extends Shape2D {
     
     //Properties
@@ -44,7 +47,7 @@ public class Square extends Shape2D {
     @Override
     public String toString() {
         String s;
-        s = "[Class Square]" + super.toString()+ " and sideLength = " + sideLength;
+        s = super.toString()+ " and sideLength = " + sideLength;
         return s;
     }
 

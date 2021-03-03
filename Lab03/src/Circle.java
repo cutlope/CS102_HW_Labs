@@ -1,3 +1,6 @@
+/**
+ * Circle Shape class which extends Shape2D to inherit the common methods
+*/
 public class Circle extends Shape2D {
     //Properties
     private int radius;
@@ -42,7 +45,7 @@ public class Circle extends Shape2D {
     @Override
     public String toString() {
         String s;
-        s = "[Class Circle]" + super.toString()+ " and radius = " + radius;
+        s = super.toString()+ " and radius = " + radius;
         return s;
     }
     

@@ -1,3 +1,6 @@
+/**
+ * Rectangle Shape class which extends Shape2D to inherit the common methods
+*/
 public class Rectangle extends Shape2D {
     //Properties
     private int height;
@@ -51,7 +54,7 @@ public class Rectangle extends Shape2D {
     @Override
     public String toString() {
         String s;
-        s = "[Class Rectangle]" + super.toString()+ ", height = " + height + " and width = " + width;
+        s = super.toString()+ ", height = " + height + " and width = " + width;
         return s;
     }
 

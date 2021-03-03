@@ -1,3 +1,8 @@
+/**
+ * Class to test the shapes
+ * @author Abdullah Riaz
+ * @version 03/03/2021
+*/
 public class ShapeTest
 {
 
@@ -9,7 +14,7 @@ public class ShapeTest
         int largestArea = 0;
         double temp = 0;
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < collection.length; i++) {
             if (collection[i].calculateArea() > temp) {
                 temp = collection[i].calculateArea();
                 largestArea = i;
@@ -28,7 +33,7 @@ public class ShapeTest
         int largestPerimeter = 0;
         double temp = 0;
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < collection.length; i++) {
             if (collection[i].calculatePerimeter() > temp) {
                 temp = collection[i].calculatePerimeter();
                 largestPerimeter = i;
@@ -38,6 +43,8 @@ public class ShapeTest
 
         return collection[largestPerimeter];
     }
+
+
 
     public static void main(String[] args) {
         
@@ -59,25 +66,26 @@ public class ShapeTest
 
 
 
-
+        //toString Testing
         System.out.println(collection[0].toString());
         System.out.println(collection[1].toString());
-        System.out.println("sq: " + collection[2].toString() );
+        System.out.println("sq1: " + collection[2].toString() );
         System.out.println("sq2: " + sq2.toString() );
         System.out.println("sq3: " + sq3.toString() );
         System.out.println("sq4: " + sq4 );
-        System.out.println("sq. equals ( sq2 ) is " + collection[2].equals(sq2));
-        System.out.println("sq. equals ( sq3 ) is " + collection[2].equals(sq3));
-        System.out.println("sq. equals ( circle ) is " + collection[2].equals(collection[1]));
+
+        //Equals Testing
+        System.out.println("sq1 .equals ( sq2 ) is " + collection[2].equals(sq2));
+        System.out.println("sq1 .equals ( sq3 ) is " + collection[2].equals(sq3));
+        System.out.println("sq1 .equals ( circle ) is " + collection[2].equals(collection[1]));
+
+        //Array Testing
         System.out.println("The Shape Array: " + collection[0].toString() + ", " + collection[1].toString() +  " and " + collection[2].toString() );
-        System.out.println(findLargestArea(collection).getObjectType() + " has largest area");
-        System.out.println(findLongestPerimeter(collection).getObjectType() + " has longest perimeter ");
+        System.out.println(findLargestArea(collection) + " has largest area");
+        System.out.println(findLongestPerimeter(collection) + " has longest perimeter ");
         System.out.println("Distance between shape 1 and 2 is " + collection[0].calculateDistance(collection[1]));
         System.out.println("Distance between shape 1 and 3 is " + collection[0].calculateDistance(collection[2]));
         System.out.println("Distance between shape 2 and 3 is " + collection[1].calculateDistance(collection[2]));
-
-
-
 
 
 

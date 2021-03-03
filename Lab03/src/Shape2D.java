@@ -1,3 +1,6 @@
+/**
+ * Main class which contains the abstract methods
+*/
 public abstract class Shape2D {
     //Properties
     int x, y;
@@ -72,14 +75,8 @@ public abstract class Shape2D {
     @Override
     public String toString() {
         String s;
-        s = "The coordinates of this shape: x = " + x + ", y = " + y;
+        s = "[class " + this.getClass().getSimpleName() + "] " + "The coordinates of this shape: x = " + x + ", y = " + y;
         return s;
     }
-
-    public String getObjectType() {
-        String className = this.getClass().getSimpleName();
-        return className;
-    }
-
 
 }
